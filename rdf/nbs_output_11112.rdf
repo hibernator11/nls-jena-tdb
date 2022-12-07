@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:bf="http://id.loc.gov/ontologies/bibframe/" xmlns:bflc="http://id.loc.gov/ontologies/bflc/" xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#">
+  <bf:Work rdf:about="http://example.org/99115985776904341#Work">
+    <bf:adminMetadata>
+      <bf:AdminMetadata>
+        <bf:generationProcess>
+          <bf:GenerationProcess>
+            <rdfs:label>DLC marc2bibframe2 v2.1.0</rdfs:label>
+            <bf:generationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-04T15:23:52+01:00</bf:generationDate>
+          </bf:GenerationProcess>
+        </bf:generationProcess>
+        <bf:status>
+          <bf:Status rdf:about="http://id.loc.gov/vocabulary/mstatus/n">
+            <rdfs:label>new</rdfs:label>
+          </bf:Status>
+        </bf:status>
+        <bflc:encodingLevel>
+          <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/7">
+            <rdfs:label>minimal</rdfs:label>
+          </bflc:EncodingLevel>
+        </bflc:encodingLevel>
+        <bf:identifiedBy>
+          <bf:Local>
+            <rdf:value>99115985776904341</rdf:value>
+            <bf:assigner>
+              <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/dlc">
+                <bf:code>DLC</bf:code>
+              </bf:Agent>
+            </bf:assigner>
+          </bf:Local>
+        </bf:identifiedBy>
+        <bf:changeDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2021-05-24T11:31:54</bf:changeDate>
+        <bf:creationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2020-10-01</bf:creationDate>
+        <bf:assigner>
+          <bf:Agent>
+            <bf:code>StEdNL</bf:code>
+          </bf:Agent>
+        </bf:assigner>
+        <bf:descriptionLanguage>
+          <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>
+        </bf:descriptionLanguage>
+        <bf:descriptionConventions>
+          <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/rda">
+            <bf:code>rda</bf:code>
+          </bf:DescriptionConventions>
+        </bf:descriptionConventions>
+      </bf:AdminMetadata>
+    </bf:adminMetadata>
+    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/NotatedMusic"/>
+    <bf:content>
+      <bf:Content rdf:about="http://id.loc.gov/vocabulary/contentTypes/ntm">
+        <rdfs:label>notated music</rdfs:label>
+      </bf:Content>
+    </bf:content>
+    <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Monograph"/>
+    <bf:contribution>
+      <bf:Contribution>
+        <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/PrimaryContribution"/>
+        <bf:agent>
+          <bf:Agent rdf:about="http://example.org/99115985776904341#Agent100-7">
+            <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>
+            <bflc:name00MatchKey>Anderson, John</bflc:name00MatchKey>
+            <bflc:primaryContributorName00MatchKey>Anderson, John</bflc:primaryContributorName00MatchKey>
+            <bflc:name00MarcKey>1001 $aAnderson, John</bflc:name00MarcKey>
+            <rdfs:label>Anderson, John</rdfs:label>
+          </bf:Agent>
+        </bf:agent>
+        <bf:role>
+          <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/ctb"/>
+        </bf:role>
+      </bf:Contribution>
+    </bf:contribution>
+    <bf:title>
+      <bf:Title>
+        <bf:mainTitle>Oranje-Booven. A favourite air with variations for the piano forte.</bf:mainTitle>
+      </bf:Title>
+    </bf:title>
+    <bf:content>
+      <bf:Content>
+        <rdfs:label>notated music</rdfs:label>
+        <bf:source>
+          <bf:Source rdf:about="http://id.loc.gov/vocabulary/genreFormSchemes/rdacontent"/>
+        </bf:source>
+      </bf:Content>
+    </bf:content>
+    <bf:hasInstance rdf:resource="http://example.org/99115985776904341#Instance"/>
+  </bf:Work>
+  <bf:Instance rdf:about="http://example.org/99115985776904341#Instance">
+    <bf:issuance rdf:resource="http://id.loc.gov/vocabulary/issuance/mono"/>
+    <bf:provisionActivity>
+      <bf:ProvisionActivity>
+        <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
+        <bf:date rdf:datatype="http://id.loc.gov/datatypes/edtf">1810</bf:date>
+        <bf:place rdf:resource="http://id.loc.gov/vocabulary/countries/stk"/>
+        <bflc:simplePlace>Edin</bflc:simplePlace>
+        <bflc:simpleAgent>J. Anderson</bflc:simpleAgent>
+        <bflc:simpleDate>[c.1810.]</bflc:simpleDate>
+      </bf:ProvisionActivity>
+    </bf:provisionActivity>
+    <bflc:publicationStatement>Edin: J. Anderson; [c.1810.]</bflc:publicationStatement>
+    <bf:provisionActivity>
+      <bf:ProvisionActivity>
+        <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>
+        <bflc:simplePlace>Edin</bflc:simplePlace>
+        <bflc:simpleAgent>J. Anderson</bflc:simpleAgent>
+        <bflc:simpleDate>[c.1810.]</bflc:simpleDate>
+      </bf:ProvisionActivity>
+    </bf:provisionActivity>
+    <bflc:publicationStatement>Edin: J. Anderson; [c.1810.]</bflc:publicationStatement>
+    <bf:identifiedBy>
+      <bf:Local>
+        <rdf:value>1-1-1-01288-11865-MUSRETRO</rdf:value>
+        <bf:assigner>
+          <bf:Agent rdf:about="http://id.loc.gov/vocabulary/organizations/stednl"/>
+        </bf:assigner>
+      </bf:Local>
+    </bf:identifiedBy>
+    <bf:title>
+      <bf:Title>
+        <bf:mainTitle>Oranje-Booven. A favourite air with variations for the piano forte.</bf:mainTitle>
+      </bf:Title>
+    </bf:title>
+    <bf:extent>
+      <bf:Extent>
+        <rdfs:label>pp.3.</rdfs:label>
+      </bf:Extent>
+    </bf:extent>
+    <bf:dimensions>fol.</bf:dimensions>
+    <bf:media>
+      <bf:Media>
+        <rdfs:label>unmediated</rdfs:label>
+        <bf:source>
+          <bf:Source rdf:about="http://id.loc.gov/vocabulary/genreFormSchemes/rdamedia"/>
+        </bf:source>
+      </bf:Media>
+    </bf:media>
+    <bf:carrier>
+      <bf:Carrier>
+        <rdfs:label>volume</rdfs:label>
+        <bf:source>
+          <bf:Source rdf:about="http://id.loc.gov/vocabulary/genreFormSchemes/rdacarrier"/>
+        </bf:source>
+      </bf:Carrier>
+    </bf:carrier>
+    <bf:instanceOf rdf:resource="http://example.org/99115985776904341#Work"/>
+  </bf:Instance>
+</rdf:RDF>
