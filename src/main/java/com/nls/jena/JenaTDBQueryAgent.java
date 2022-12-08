@@ -76,16 +76,6 @@ public class JenaTDBQueryAgent {
             }
 
             qe = QueryExecutionFactory.create("PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> " +
-                    "SELECT distinct ?l " +
-                    "WHERE {?s a <http://id.loc.gov/ontologies/bibframe/Role> . ?s rdfs:label ?l}", dataset);
-            for (ResultSet results = qe.execSelect(); results.hasNext();) {
-                QuerySolution qs = results.next();
-                String lValue = qs.get("?l").toString();
-
-                logger.info("Roles:" + lValue);
-            }
-
-            qe = QueryExecutionFactory.create("PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> " +
                     "SELECT *" +
                     "WHERE {?s a <http://id.loc.gov/ontologies/bibframe/Isni> . ?s ?p ?o} limit 10", dataset);
             for (ResultSet results = qe.execSelect(); results.hasNext();) {
