@@ -7,6 +7,7 @@ In particular, this project uses the [RDF](https://www.w3.org/RDF/) dataset gene
 ### Table of Contents
 - [Datasets](#datasets)
 - [Setup](#setup)
+- [Loading RDF](#loading-rdf)
 - [Suggested Citations](#suggested-citations)
 - [Structure of the project](#structure-of-the-project)
 - [Example of code](#example-of-code)
