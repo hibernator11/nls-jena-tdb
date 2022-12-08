@@ -51,6 +51,30 @@ mvn exec:java -Dexec.mainClass="com.nls.jena.JenaTDBQueryAgent"
 
 This Java project can be edited in Integrated Development Environments such as [Idea](https://www.jetbrains.com/idea/) and [Eclipse](https://www.eclipse.org/). 
 
+## Loading RDF
+The class `JenaTDBLoad` is in charge of loading the RDF into the RDF Jena TDB storage system. The RDF files must be places in the folder `rdf`. The following code shows the process:
+
+```
+dataset.begin(ReadWrite.WRITE);
+Model model = dataset.getDefaultModel();
+
+//Files.walk(Paths.get("/home/gustavo/nls-fellowship/nls-fellowship-2022-23/rdf"))
+Files.walk(Paths.get(path.toFile().getAbsolutePath() +"/rdf"))
+        .filter(p -> p.toString().endsWith(".gz"))
+        .forEach(p -> {
+            logger.info(p.toFile().getAbsolutePath());
+            try {
+                RDFDataMgr.read(model, p.toFile().getAbsolutePath(), Lang.RDFXML);
+            }catch (Exception e){
+                logger.error(p.toFile().getAbsolutePath() + e.getMessage());
+            }
+        });
+dataset.commit();
+
+// Releasing dataset resources
+dataset.close();
+```
+
 ## Structure of the project
 This project is based on Java and Maven. It requires Maven installed in your computer to be able to run the project.
 
