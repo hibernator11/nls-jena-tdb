@@ -7,6 +7,7 @@ In particular, this project uses the [RDF](https://www.w3.org/RDF/) dataset gene
 ### Table of Contents
 - [Datasets](#datasets)
 - [Setup](#setup)
+- [Loading RDF](#loading-rdf)
 - [Suggested Citations](#suggested-citations)
 - [Structure of the project](#structure-of-the-project)
 - [Example of code](#example-of-code)
@@ -24,6 +25,9 @@ In particular, this project uses the [RDF](https://www.w3.org/RDF/) dataset gene
 
 
 ## Setup
+
+This project is based on [Apache Maven](https://maven.apache.org), a build-automation tool designed to provide a comprehensive and easy-to-use way of developing Java applications. the use of this code requires the installation of [Apache Maven]([Apache Maven](https://maven.apache.org/install.html)).
+
 Before running the project, we need to download the libraries and compile the code. We need to run the command:
 
 ```
@@ -47,6 +51,38 @@ mvn exec:java -Dexec.mainClass="com.nls.jena.JenaTDBQueryAgent"
 **Note that this code does not provide the entire RDF dataset due to size constraints. This code is provided as an example of how Jena TDB can be used to load and query an RDF dataset. This example uses the files provided in the `rdf` folder for testing purposes.**
 
 This Java project can be edited in Integrated Development Environments such as [Idea](https://www.jetbrains.com/idea/) and [Eclipse](https://www.eclipse.org/). 
+
+## Loading RDF
+The class `JenaTDBLoad` is in charge of loading the RDF into the RDF Jena TDB storage system. The RDF files must be places in the folder `rdf`. The following code shows the process:
+
+```
+ // Create dataset
+Path path = Paths.get(".").toAbsolutePath().normalize();
+String dbDir = path.toFile().getAbsolutePath() + "/db/";
+Location location = Location.create(dbDir);
+Dataset dataset = TDB2Factory.connectDataset(location);
+
+dataset.begin(ReadWrite.WRITE);
+Model model = dataset.getDefaultModel();
+
+//Files.walk(Paths.get("/home/gustavo/nls-fellowship/nls-fellowship-2022-23/rdf"))
+Files.walk(Paths.get(path.toFile().getAbsolutePath() +"/rdf"))
+        .filter(p -> p.toString().endsWith(".gz"))
+        .forEach(p -> {
+            logger.info(p.toFile().getAbsolutePath());
+            try {
+                RDFDataMgr.read(model, p.toFile().getAbsolutePath(), Lang.RDFXML);
+            }catch (Exception e){
+                logger.error(p.toFile().getAbsolutePath() + e.getMessage());
+            }
+        });
+dataset.commit();
+
+// Releasing dataset resources
+dataset.close();
+```
+
+For the instructions to generate the RDF from scratch please follow the following [link](https://github.com/hibernator11/nls-fellowship-2022-23/blob/master/README.md#generating-the-rdf).
 
 ## Structure of the project
 This project is based on Java and Maven. It requires Maven installed in your computer to be able to run the project.
