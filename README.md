@@ -82,6 +82,8 @@ dataset.commit();
 dataset.close();
 ```
 
+For the instructions to generate the RDF from scratch please follow the following [link](https://github.com/hibernator11/nls-fellowship-2022-23/blob/master/README.md#generating-the-rdf).
+
 ## Structure of the project
 This project is based on Java and Maven. It requires Maven installed in your computer to be able to run the project.
 
