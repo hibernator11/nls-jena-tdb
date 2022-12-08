@@ -1,13 +1,29 @@
 # nls-jena-tdb
-Java project for the analysis of the RDF data generated from the National Bibliography of Scotland.
 
-## Note
 Created in October-December 2022 for the National Library of Scotland's Data Foundry by [Gustavo Candela, National Librarian’s Research Fellowship in Digital Scholarship 2022-23](https://data.nls.uk/projects/the-national-librarians-research-fellowship-in-digital-scholarship-2022-23/)
 
 In particular, this project uses the [RDF](https://www.w3.org/RDF/) dataset generated based on the National Bibliography of Scotland dataset published by the National Library of Scotland. See more details in [this link] (https://github.com/hibernator11/nls-fellowship-2022-23#national-bibliography-of-scotland).
 
+### Table of Contents
+- [Datasets](#datasets)
+- [Setup](#setup)
+- [Suggested Citations](#suggested-citations)
+- [Structure of the project](#structure-of-the-project)
+- [Example of code](#example-of-code)
+- [References](#references)
 
-## Running the project
+## Datasets
+
+### Collection 1: The National Bibliography of Scotland (version 2)
+- Owner: National Library of Scotland
+- Creator: National Library of Scotland
+- Website: Visit the [NLS Data Foundry](https://data.nls.uk/data/metadata-collections/national-bibliography-of-scotland/)
+- DOI: https://doi.org/10.34812/7cda-ep21
+- Date created: 2022
+- Licence: Creative Commons Attribution 4.0 International ([CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/))
+
+
+## Setup
 Beffore running the project, we need to download the libraries and compile the code. We need to run the command:
 
 ```
@@ -71,5 +87,7 @@ for (ResultSet results = qe.execSelect(); results.hasNext();) {
 dataset.close();
 ```
 
-
+## References
+- https://github.com/lcnetdev/marc2bibframe2
+- https://jena.apache.org/documentation/tdb2/
 
