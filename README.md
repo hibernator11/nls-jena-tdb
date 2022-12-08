@@ -56,6 +56,12 @@ This Java project can be edited in Integrated Development Environments such as [
 The class `JenaTDBLoad` is in charge of loading the RDF into the RDF Jena TDB storage system. The RDF files must be places in the folder `rdf`. The following code shows the process:
 
 ```
+ // Create dataset
+Path path = Paths.get(".").toAbsolutePath().normalize();
+String dbDir = path.toFile().getAbsolutePath() + "/db/";
+Location location = Location.create(dbDir);
+Dataset dataset = TDB2Factory.connectDataset(location);
+
 dataset.begin(ReadWrite.WRITE);
 Model model = dataset.getDefaultModel();
 
