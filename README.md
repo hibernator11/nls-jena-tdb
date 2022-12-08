@@ -107,6 +107,7 @@ Several classes are provided to analyse the content of the dataset. These are th
 - JenaTDBQueryTest: this class executes general SPARQL queries to retrieve the number of classes and properties included the folder `dbtest`
 - JenaTDBQuery: this class executes general SPARQL queries to retrieve the number of classes and properties
 - JenaTDBQueryAgent: this class analyses the resources typed as bf:Agent
+- JenaTDBQueryAgentRoles: this class analyses the roles used for the resources typed as bf:Agent when establishing a relationship with bf:Work resources
 - JenaTDBQueryClustering: this class analyses if the resources typed as bf:Agent are clustered by name
 - JenaTDBQueryGeographicCoverage: this class analyses the resources typed as bf:GeographicCoverage
 - JenaTDBQueryInstance: this class analyses the resources typed as bf:Instance
