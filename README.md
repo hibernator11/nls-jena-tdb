@@ -113,6 +113,7 @@ Several classes are provided to analyse the content of the dataset. These are th
 - JenaTDBQueryLanguage: this class analyses the languages included in the dataset
 - JenaTDBQueryTitle: this class analyses how the resources bf:Title are modelled
 - JenaTDBQueryWork: this class analyses the resources typed as bf:Work
+- JenaTDBQueryRelations: this class inspects how the resources typed as bf:Work are related with other resources such as bf:Work and bf:Hub
 
 ## Example of code
 All the classes provided in the project are based on the same structure. First, we open the Jena TDB dataset, then we create a transaction for reading, we define the SPARQL query and retrieve the results. Finally, we close the transaction and the dataset to release the resources.
