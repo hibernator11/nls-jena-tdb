@@ -33,7 +33,7 @@ public class JenaTDBQueryRelations {
                     "SELECT * " +
                     "WHERE {?s bf:expressionOf ?exp" +
                     //"        filter (!regex(str(?exp), \"Hub\"))" +
-                            "} limit 50", dataset);
+                            "} limit 10", dataset);
             for (ResultSet results = qe.execSelect(); results.hasNext();) {
                 QuerySolution qs = results.next();
                 String strValue = qs.get("?exp").toString();
@@ -83,7 +83,6 @@ public class JenaTDBQueryRelations {
                 logger.info("http://example.org/998311393804341#Hub240-11 bf:title value = " + oValue);
             }
 
-            // let's check what a Hub contains
             qe = QueryExecutionFactory.create(
                     "PREFIX bf:<http://id.loc.gov/ontologies/bibframe/> " +
                             "PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> " +
@@ -98,6 +97,38 @@ public class JenaTDBQueryRelations {
                 logger.info("http://example.org/998311393804341#Hub240-11 bf:contribution value = " + oValue);
             }
 
+            qe = QueryExecutionFactory.create(
+                    "PREFIX bf:<http://id.loc.gov/ontologies/bibframe/> " +
+                            "PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> " +
+                            "SELECT * " +
+                            "WHERE {?s bf:references ?r." +
+                            " ?r ?p ?o ." +
+                            "} limit 10", dataset);
+            for (ResultSet results = qe.execSelect(); results.hasNext();) {
+                QuerySolution qs = results.next();
+
+                String sValue = qs.get("?s").toString();
+                String rValue = qs.get("?r").toString();
+                String pValue = qs.get("?p").toString();
+                String oValue = qs.get("?o").toString();
+                logger.info(sValue + " references value = " + rValue + " " + pValue + " " + oValue);
+            }
+
+            qe = QueryExecutionFactory.create(
+                    "PREFIX bf:<http://id.loc.gov/ontologies/bibframe/> " +
+                            "PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> " +
+                            "SELECT * " +
+                            "WHERE { <http://example.org/9930877183804341#Work> bf:references ?r." +
+                            " ?r bf:title ?t ." +
+                            " ?t bf:mainTitle ?title ." +
+                            "} limit 10", dataset);
+            for (ResultSet results = qe.execSelect(); results.hasNext();) {
+                QuerySolution qs = results.next();
+
+                String rValue = qs.get("?r").toString();
+                String oValue = qs.get("?title").toString();
+                logger.info("title <http://example.org/9930877183804341#Work> references value = " + rValue + " " + oValue);
+            }
 
             qe = QueryExecutionFactory.create(
                     "PREFIX bf:<http://id.loc.gov/ontologies/bibframe/> " +
