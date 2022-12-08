@@ -33,11 +33,25 @@ public class JenaTDBQueryRelations {
                     "SELECT * " +
                     "WHERE {?s bf:expressionOf ?exp" +
                     //"        filter (!regex(str(?exp), \"Hub\"))" +
-                            "} limit 10", dataset);
+                            "} limit 50", dataset);
             for (ResultSet results = qe.execSelect(); results.hasNext();) {
                 QuerySolution qs = results.next();
                 String strValue = qs.get("?exp").toString();
                 logger.info("value = " + strValue);
+            }
+
+            qe = QueryExecutionFactory.create(
+                    "PREFIX bf:<http://id.loc.gov/ontologies/bibframe/> " +
+                            "SELECT * " +
+                            "WHERE {?s bf:expressionOf <http://example.org/998311393804341#Hub240-11> .?s ?p ?o ." +
+                            //"        filter (!regex(str(?exp), \"Hub\"))" +
+                            "} limit 30", dataset);
+            for (ResultSet results = qe.execSelect(); results.hasNext();) {
+                QuerySolution qs = results.next();
+                String sValue = qs.get("?s").toString();
+                String pValue = qs.get("?p").toString();
+                String oValue = qs.get("?o").toString();
+                logger.info("value = " + sValue + " " + pValue + " " + oValue);
             }
 
             // let's check what a Hub contains
