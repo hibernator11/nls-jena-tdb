@@ -47,7 +47,7 @@ Several classes are provided to analyse the content of the dataset. These are th
 All the classes provided in the project are based on the same structure. First, we open the Jena TDB dataset, then we create a transaction for reading, we define the SPARQL query and retrieve the results. Finally, we close the transaction and the dataset to release the resources.
 
 ```
-// Open dataset
+// open dataset
 Path path = Paths.get(".").toAbsolutePath().normalize();
 String dbDir = path.toFile().getAbsolutePath() + "/db/";
 Location location = Location.create(dbDir);
@@ -65,6 +65,7 @@ for (ResultSet results = qe.execSelect(); results.hasNext();) {
     logger.info("value = " + strValue);
 }
 ```
+
 ```
 // Releasing dataset resources
 dataset.close();
