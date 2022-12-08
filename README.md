@@ -37,6 +37,11 @@ We can use the java command to execute our JAR file:
 java -jar target/jena-tdb-1.0-SNAPSHOT.jar
 ```
 
+In order to run other classes we can use the following command:
+```
+mvn exec:java -Dexec.mainClass="com.nls.jena.JenaTDBQueryAgent"
+```
+
 **Note that this code does not provide the entire RDF dataset due to size constraints. This code is provided as an example of how Jena TDB can be used to load and query an RDF dataset. This example uses the files provided in the `rdf` folder for testing purposes.**
 
 This Java project can be edited in Integrated Development Environments such as [Idea](https://www.jetbrains.com/idea/) and [Eclipse](https://www.eclipse.org/). 
@@ -61,6 +66,7 @@ Several classes are provided to analyse the content of the dataset. These are th
 
 - JenaTDBLoad: loading into the folder `db` the RDF files provided in the folder `rdf`. This path can be changed in order to provide the folder with the RDF files.  
 - JenaTDBLoadTest: loading the RDF files into the folder `dbtest` provided in the folder rdf for testing purposes.
+- JenaTDBQueryTest: this class executes general SPARQL queries to retrieve the number of classes and properties included the folder `dbtest`
 - JenaTDBQuery: this class executes general SPARQL queries to retrieve the number of classes and properties
 - JenaTDBQueryAgent: this class analyses the resources typed as bf:Agent
 - JenaTDBQueryClustering: this class analyses if the resources typed as bf:Agent are clustered by name
