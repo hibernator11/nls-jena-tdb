@@ -42,6 +42,8 @@ In order to run other classes we can use the following command:
 mvn exec:java -Dexec.mainClass="com.nls.jena.JenaTDBQueryAgent"
 ```
 
+<img src="images/output-jar.png">
+
 **Note that this code does not provide the entire RDF dataset due to size constraints. This code is provided as an example of how Jena TDB can be used to load and query an RDF dataset. This example uses the files provided in the `rdf` folder for testing purposes.**
 
 This Java project can be edited in Integrated Development Environments such as [Idea](https://www.jetbrains.com/idea/) and [Eclipse](https://www.eclipse.org/). 
