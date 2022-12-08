@@ -24,11 +24,22 @@ In particular, this project uses the [RDF](https://www.w3.org/RDF/) dataset gene
 
 
 ## Setup
-Beffore running the project, we need to download the libraries and compile the code. We need to run the command:
+Before running the project, we need to download the libraries and compile the code. We need to run the command:
 
 ```
-mvn clean install
+mvn package
 ```
+
+Running this command will create a list of files in a new `target` directory.
+
+We can use the java command to execute our JAR file:
+```
+java -jar target/jena-tdb-1.0-SNAPSHOT.jar
+```
+
+**Note that this code does not provide the entire RDF dataset due to size constraints. This code is provided as an example of how Jena TDB can be used to load and query an RDF dataset. This example uses the files provided in the `rdf` folder for testing purposes.**
+
+This Java project can be edited in Integrated Development Environments such as [Idea](https://www.jetbrains.com/idea/) and [Eclipse](https://www.eclipse.org/). 
 
 ## Structure of the project
 This project is based on Java and Maven. It requires Maven installed in your computer to be able to run the project.
