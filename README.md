@@ -71,7 +71,7 @@ Dataset dataset = TDB2Factory.connectDataset(location);
 dataset.begin(ReadWrite.WRITE);
 Model model = dataset.getDefaultModel();
 
-//Files.walk(Paths.get("/home/gustavo/nls-fellowship/nls-fellowship-2022-23/rdf"))
+# update path
 Files.walk(Paths.get(path.toFile().getAbsolutePath() +"/rdf"))
         .filter(p -> p.toString().endsWith(".gz"))
         .forEach(p -> {
