@@ -43,7 +43,7 @@ java -jar target/jena-tdb-1.0-SNAPSHOT.jar
 
 In order to run other classes we can use the following command:
 ```
-mvn exec:java -Dexec.mainClass="com.nls.jena.JenaTDBQueryAgent"
+mvn exec:java -Dexec.mainClass="com.nls.jena.nbs.JenaTDBQueryAgent"
 ```
 
 <img src="images/output-jar.png">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration package="log4j.test" status="WARN">
+<Configuration package="log4j.test" status="ERROR">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%markerSimpleName %-5p %C.%M():%L - %msg %ex{full}%n"/>

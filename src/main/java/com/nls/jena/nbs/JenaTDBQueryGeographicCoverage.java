@@ -1,4 +1,4 @@
-package com.nls.jena;
+package com.nls.jena.nbs;
 
 import org.apache.jena.dboe.base.file.Location;
 import org.apache.jena.query.*;
@@ -11,8 +11,8 @@ import org.slf4j.MarkerFactory;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class JenaTDBQueryLanguage {
-    private static Logger logger = LoggerFactory.getLogger(JenaTDBQueryLanguage.class);
+public class JenaTDBQueryGeographicCoverage {
+    private static Logger logger = LoggerFactory.getLogger(JenaTDBQueryGeographicCoverage.class);
     // Why This Failure marker
     private static final Marker WTF_MARKER = MarkerFactory.getMarker("WTF");
 
@@ -26,26 +26,24 @@ public class JenaTDBQueryLanguage {
 
             // create transaction for reading
             dataset.begin(ReadWrite.READ);
-            QueryExecution qe = QueryExecutionFactory.create("SELECT distinct ?l " +
-                    "WHERE {?s <http://id.loc.gov/ontologies/bibframe/language> ?l ." +
-                    "filter regex(str(?l), \"http\") " +
+            QueryExecution qe = QueryExecutionFactory.create("SELECT (count(distinct ?g) as ?total) " +
+                    "WHERE {?s <http://id.loc.gov/ontologies/bibframe/geographicCoverage> ?g ." +
+                    "filter regex(str(?g), \"geographic\") " +
                     "}", dataset);
             for (ResultSet results = qe.execSelect(); results.hasNext();) {
                 QuerySolution qs = results.next();
-                String lValue = qs.get("?l").toString();
-                logger.info("Languages lValue:" + lValue);
+                String strValue = qs.get("?total").toString();
+                logger.info("total Geographic coverage = " + strValue);
             }
 
-            qe = QueryExecutionFactory.create("SELECT distinct ?s ?t " +
-                    "WHERE {?s <http://id.loc.gov/ontologies/bibframe/language> <http://id.loc.gov/vocabulary/languages/spa> ." +
-                    "       ?s <http://id.loc.gov/ontologies/bibframe/title> ?title ." +
-                    "       ?title <http://id.loc.gov/ontologies/bibframe/mainTitle> ?t " +
+            qe = QueryExecutionFactory.create("SELECT distinct ?g " +
+                    "WHERE {?s <http://id.loc.gov/ontologies/bibframe/geographicCoverage> ?g ." +
+                    "filter regex(str(?g), \"geographic\") " +
                     "}", dataset);
             for (ResultSet results = qe.execSelect(); results.hasNext();) {
                 QuerySolution qs = results.next();
-                String tValue = qs.get("?t").toString();
-                String sValue = qs.get("?s").toString();
-                logger.info("Works Spanish:" + sValue + " " + tValue);
+                String strValue = qs.get("?g").toString();
+                logger.info("Geographic coverage = " + strValue);
             }
 
             // Releasing dataset resources

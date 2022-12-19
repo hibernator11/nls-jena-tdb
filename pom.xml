@@ -27,7 +27,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>libs/</classpathPrefix>
-                            <mainClass>com.nls.jena.JenaTDBQueryTest</mainClass>
+                            <mainClass>com.nls.jena.nbs.JenaTDBQueryTest</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

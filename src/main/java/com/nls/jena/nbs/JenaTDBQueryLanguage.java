@@ -1,4 +1,4 @@
-package com.nls.jena;
+package com.nls.jena.nbs;
 
 import org.apache.jena.dboe.base.file.Location;
 import org.apache.jena.query.*;
@@ -11,8 +11,8 @@ import org.slf4j.MarkerFactory;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class JenaTDBQueryAccuracy {
-    private static Logger logger = LoggerFactory.getLogger(JenaTDBQueryAccuracy.class);
+public class JenaTDBQueryLanguage {
+    private static Logger logger = LoggerFactory.getLogger(JenaTDBQueryLanguage.class);
     // Why This Failure marker
     private static final Marker WTF_MARKER = MarkerFactory.getMarker("WTF");
 
@@ -26,30 +26,26 @@ public class JenaTDBQueryAccuracy {
 
             // create transaction for reading
             dataset.begin(ReadWrite.READ);
-
-            QueryExecution qe = QueryExecutionFactory.create(
-                    "PREFIX bf:<http://id.loc.gov/ontologies/bibframe/> " +
-                            "PREFIX bflc:<http://id.loc.gov/ontologies/bflc/> " +
-                            "SELECT distinct ?date " +
-                            "WHERE {" +
-                            "?s bflc:simpleDate ?date ." +
-                            "} order by ?date limit 200 ", dataset);
+            QueryExecution qe = QueryExecutionFactory.create("SELECT distinct ?l " +
+                    "WHERE {?s <http://id.loc.gov/ontologies/bibframe/language> ?l ." +
+                    "filter regex(str(?l), \"http\") " +
+                    "}", dataset);
             for (ResultSet results = qe.execSelect(); results.hasNext();) {
                 QuerySolution qs = results.next();
-                String strValue = qs.get("?date").toString();
-                logger.info("date = " + strValue);
+                String lValue = qs.get("?l").toString();
+                logger.info("Languages lValue:" + lValue);
             }
 
-            qe = QueryExecutionFactory.create("PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> " +
-                    "SELECT distinct ?s " +
-                    "WHERE {?s ?p ?r. ?r a <http://id.loc.gov/ontologies/bibframe/Role> . ?r rdfs:label ?l . " +
-                    "filter regex(?l, \"auhtor\") } " +
-                    "limit 100", dataset);
+            qe = QueryExecutionFactory.create("SELECT distinct ?s ?t " +
+                    "WHERE {?s <http://id.loc.gov/ontologies/bibframe/language> <http://id.loc.gov/vocabulary/languages/spa> ." +
+                    "       ?s <http://id.loc.gov/ontologies/bibframe/title> ?title ." +
+                    "       ?title <http://id.loc.gov/ontologies/bibframe/mainTitle> ?t " +
+                    "}", dataset);
             for (ResultSet results = qe.execSelect(); results.hasNext();) {
                 QuerySolution qs = results.next();
-                String lValue = qs.get("?s").toString();
-
-                logger.info("Roles:" + lValue);
+                String tValue = qs.get("?t").toString();
+                String sValue = qs.get("?s").toString();
+                logger.info("Works Spanish:" + sValue + " " + tValue);
             }
 
             // Releasing dataset resources
@@ -59,5 +55,4 @@ public class JenaTDBQueryAccuracy {
         }
     }
 }
-
 

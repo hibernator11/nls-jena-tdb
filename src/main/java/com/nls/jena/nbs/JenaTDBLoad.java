@@ -1,4 +1,4 @@
-package com.nls.jena;
+package com.nls.jena.nbs;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

@@ -1,4 +1,4 @@
-package com.nls.jena;
+package com.nls.jena.nbs;
 
 import org.apache.jena.dboe.base.file.Location;
 import org.apache.jena.query.*;
@@ -11,8 +11,8 @@ import org.slf4j.MarkerFactory;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class JenaTDBQueryGeographicCoverage {
-    private static Logger logger = LoggerFactory.getLogger(JenaTDBQueryGeographicCoverage.class);
+public class JenaTDBQueryTitle {
+    private static Logger logger = LoggerFactory.getLogger(JenaTDBQueryTitle.class);
     // Why This Failure marker
     private static final Marker WTF_MARKER = MarkerFactory.getMarker("WTF");
 
@@ -26,24 +26,14 @@ public class JenaTDBQueryGeographicCoverage {
 
             // create transaction for reading
             dataset.begin(ReadWrite.READ);
-            QueryExecution qe = QueryExecutionFactory.create("SELECT (count(distinct ?g) as ?total) " +
-                    "WHERE {?s <http://id.loc.gov/ontologies/bibframe/geographicCoverage> ?g ." +
-                    "filter regex(str(?g), \"geographic\") " +
-                    "}", dataset);
+            QueryExecution qe = QueryExecutionFactory.create("SELECT ?t ?p ?o " +
+                    "WHERE {<http://example.org/99116414544204341#Work> <http://id.loc.gov/ontologies/bibframe/title> ?t . ?t ?p ?o} limit 10", dataset);
             for (ResultSet results = qe.execSelect(); results.hasNext();) {
                 QuerySolution qs = results.next();
-                String strValue = qs.get("?total").toString();
-                logger.info("total Geographic coverage = " + strValue);
-            }
-
-            qe = QueryExecutionFactory.create("SELECT distinct ?g " +
-                    "WHERE {?s <http://id.loc.gov/ontologies/bibframe/geographicCoverage> ?g ." +
-                    "filter regex(str(?g), \"geographic\") " +
-                    "}", dataset);
-            for (ResultSet results = qe.execSelect(); results.hasNext();) {
-                QuerySolution qs = results.next();
-                String strValue = qs.get("?g").toString();
-                logger.info("Geographic coverage = " + strValue);
+                String tValue = qs.get("?t").toString();
+                String pValue = qs.get("?p").toString();
+                String oValue = qs.get("?o").toString();
+                logger.info("Title tValue:" + tValue + " pValue:" + pValue + " oValue:" + oValue);
             }
 
             // Releasing dataset resources
