@@ -20,7 +20,7 @@ public class JenaTDBQuery {
         try {
             // Create dataset
             Path path = Paths.get(".").toAbsolutePath().normalize();
-            String dbDir = path.toFile().getAbsolutePath() + "/db/";
+            String dbDir = path.toFile().getAbsolutePath() + "/dbboslit/";
             Location location = Location.create(dbDir);
             Dataset dataset = TDB2Factory.connectDataset(location);
 

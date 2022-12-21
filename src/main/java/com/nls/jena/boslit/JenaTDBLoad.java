@@ -24,14 +24,14 @@ public class JenaTDBLoad {
         try {
             // Create dataset
             Path path = Paths.get(".").toAbsolutePath().normalize();
-            String dbDir = path.toFile().getAbsolutePath() + "/db/";
+            String dbDir = path.toFile().getAbsolutePath() + "/dbboslit/";
             Location location = Location.create(dbDir);
             Dataset dataset = TDB2Factory.connectDataset(location);
 
             dataset.begin(ReadWrite.WRITE);
             Model model = dataset.getDefaultModel();
 
-            Files.walk(Paths.get("/home/gustavo/codigo/proyectos-udua/nls-fellowship-2022-23/rdf/boslit"))
+            Files.walk(Paths.get("/home/gustavo/nls-fellowship/nls-fellowship-2022-23/rdf/boslit"))
             //Files.walk(Paths.get(path.toFile().getAbsolutePath() +"/rdf"))
                     .filter(p -> p.toString().endsWith(".gz"))
                     .forEach(p -> {
