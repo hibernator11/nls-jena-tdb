@@ -95,18 +95,18 @@ This project is based on Java and Maven. It requires Maven installed in your com
 
 The following image describes the structure of the project.
 
-- db: folder used by JenaTDB to load and store the RDF dataset
+- db: folder used by JenaTDB to load and store the RDF dataset concerning the National Bibliography of Scotland
+- dbboslist: folder used by JenaTDB to load and store the RDF dataset concerning the Bibliography of Scottish Literature in Translation (BOSLIT)
 - dbtest: folder used by JenaTDB to load and store the RDF samples provided in the rdf folder
 - logs: log of the code
-- rdf: examples of RDF files created from the National Bibliography of Scotland using the tool [marc2bibframe2](https://github.com/lcnetdev/marc2bibframe2)
+- rdf: examples of RDF files created from the National Bibliography of Scotland and BOSLIT using the tool [marc2bibframe2](https://github.com/lcnetdev/marc2bibframe2)
 - src/main/java: main Java classes included in the project (described below)
 - src/main/resources: additional files such as [log4j2.xml](https://logging.apache.org/log4j/2.x/manual/configuration.html) to configure the log (trace,warn,error,info).
 - pom.xml: contains information to build the project such as dependencies, build directory, source directory,...In order to be able to work with Jena TDB, this file includes the dependency [apache-jena-libs](https://mvnrepository.com/artifact/org.apache.jena/apache-jena-libs)
 
 <img src="images/structure-project.png">
 
-
-Several classes are provided to analyse the content of the dataset. These are the classes found in the project:
+Several classes are provided to analyse the content of the dataset grouped into two packages. These are the classes found in the project:
 
 - JenaTDBLoad: loading into the folder `db` the RDF files provided in the folder `rdf`. This path can be changed in order to provide the folder with the RDF files.  
 - JenaTDBLoadTest: loading the RDF files into the folder `dbtest` provided in the folder rdf for testing purposes.
