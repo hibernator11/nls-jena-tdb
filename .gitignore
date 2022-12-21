@@ -13,3 +13,4 @@ db/
 dbboslit/
 logs/
 .idea/
+dbtest/*
