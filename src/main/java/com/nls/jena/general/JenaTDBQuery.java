@@ -42,13 +42,13 @@ public class JenaTDBQuery {
                 logger.info("number of classes = " + strValue);
             }
 
-            /*qe = QueryExecutionFactory.create("SELECT distinct ?p " +
+            qe = QueryExecutionFactory.create("SELECT distinct ?p " +
                     "WHERE {?s ?p ?o }", dataset);
             for (ResultSet results = qe.execSelect(); results.hasNext();) {
                 QuerySolution qs = results.next();
                 String strValue = qs.get("?p").toString();
                 logger.info("value = " + strValue);
-            }*/
+            }
 
             qe = QueryExecutionFactory.create("SELECT (COUNT(distinct ?p) AS ?total) " +
                     "WHERE {?s ?p ?o }", dataset);
