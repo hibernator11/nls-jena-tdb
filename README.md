@@ -12,6 +12,7 @@ In particular, this project uses the [RDF](https://www.w3.org/RDF/) dataset gene
 - [Structure of the project](#structure-of-the-project)
 - [Example of code](#example-of-code)
 - [Example of SPARQL queries](#example-of-sparql-queries)
+- [Fuseki Server](#fuseki-server)
 - [References](#references)
 
 ## Datasets
@@ -194,6 +195,29 @@ WHERE {
 } 
 LIMIT 10
 ```
+
+## Fuseki server
+[Apache Jena Fuseki](https://jena.apache.org/documentation/fuseki2/) is a SPARQL server that was configurated to give access to the final RDF datasets. The following code shows how to make available the SPARQL server (http://localhost:3330/rdf/sparql) in a local environment:
+
+```
+public class FusekiServerNLS {
+    public static void main(String[] args) {
+        // Create dataset
+        Path path = Paths.get(".").toAbsolutePath().normalize();
+        String dbDir = path.toFile().getAbsolutePath() + "/db/";
+        Location location = Location.create(dbDir);
+        Dataset dataset = TDB2Factory.connectDataset(location);
+
+        FusekiServer server = FusekiServer.create()
+                .add("/rdf", dataset)
+                .build() ;
+        server.start();
+
+        server.stop();
+    }
+}
+```
+
 
 ## References
 - https://github.com/lcnetdev/marc2bibframe2
