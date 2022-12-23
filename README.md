@@ -95,8 +95,7 @@ This project is based on Java and Maven. It requires Maven installed in your com
 
 The following image describes the structure of the project.
 
-- db: folder used by JenaTDB to load and store the RDF dataset concerning the National Bibliography of Scotland
-- dbboslist: folder used by JenaTDB to load and store the RDF dataset concerning the Bibliography of Scottish Literature in Translation (BOSLIT)
+- db: folder used by JenaTDB to load and store the RDF dataset
 - dbtest: folder used by JenaTDB to load and store the RDF samples provided in the rdf folder
 - logs: log of the code
 - rdf: examples of RDF files created from the National Bibliography of Scotland and BOSLIT using the tool [marc2bibframe2](https://github.com/lcnetdev/marc2bibframe2)
