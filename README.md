@@ -167,7 +167,7 @@ SELECT (COUNT(distinct ?type) AS ?total)
 WHERE {?s a ?type}
 ```
 
-This example retrieves works having the uniform title *Strange case of Doctor Jekyll and Mister Hyde. Italian*.  
+This example retrieves works with the uniform title *Strange case of Doctor Jekyll and Mister Hyde. Italian*.  
 ```
 PREFIX bf:<http://id.loc.gov/ontologies/bibframe/>
 SELECT ?work ?workMainTitle ?exp
@@ -180,7 +180,7 @@ WHERE {
 LIMIT 20
 ```
 
-This example retrieves resources typed as bf:Agent with the label *Stevenson, Robert Louis*.  
+This example retrieves resources typed as `bf:Agent` with the label *Stevenson, Robert Louis*.  
 ```
 PREFIX bf:<http://id.loc.gov/ontologies/bibframe/> 
 PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
