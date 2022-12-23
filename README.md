@@ -11,6 +11,7 @@ In particular, this project uses the [RDF](https://www.w3.org/RDF/) dataset gene
 - [Suggested Citations](#suggested-citations)
 - [Structure of the project](#structure-of-the-project)
 - [Example of code](#example-of-code)
+- [Example of SPARQL queries](#example-of-sparql-queries)
 - [References](#references)
 
 ## Datasets
@@ -149,6 +150,49 @@ for (ResultSet results = qe.execSelect(); results.hasNext();) {
 ```
 // Releasing dataset resources
 dataset.close();
+```
+
+## Example of SPARQL queries
+
+The following examples of SPARQL queries show how to query the RDF dataset. The first one retrieves the different classes used.
+
+```
+SELECT distinct ?type
+WHERE {?s a ?type}
+```
+
+This example returns the total number of classes used in the dataset:
+```
+SELECT (COUNT(distinct ?type) AS ?total)
+WHERE {?s a ?type}
+```
+
+This example retrieves works having the uniform title *Strange case of Doctor Jekyll and Mister Hyde. Italian*.  
+```
+PREFIX bf:<http://id.loc.gov/ontologies/bibframe/>
+SELECT ?work ?workMainTitle ?exp
+WHERE {
+  ?work bf:title ?workTitle . ?workTitle bf:mainTitle ?workMainTitle .
+  ?work bf:expressionOf ?exp. 
+  ?exp bf:title ?expTitle. 
+  ?expTitle bf:mainTitle "Strange case of Doctor Jekyll and Mister Hyde. Italian"
+}
+LIMIT 20
+```
+
+This example retrieves resources typed as bf:Agent with the label *Stevenson, Robert Louis*.  
+```
+PREFIX bf:<http://id.loc.gov/ontologies/bibframe/> 
+PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> 
+SELECT ?label ?a 
+WHERE {
+ ?s bf:contribution ?c . 
+ ?c bf:agent ?a .
+ ?a rdfs:label ?label . 
+ FILTER regex(str(?a), "http://") 
+ FILTER regex(str(?label), "Stevenson, Robert Louis") 
+} 
+LIMIT 10
 ```
 
 ## References
