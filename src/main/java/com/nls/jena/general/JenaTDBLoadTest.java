@@ -1,4 +1,4 @@
-package com.nls.jena.boslit;
+package com.nls.jena.general;
 
 import org.apache.jena.dboe.base.file.Location;
 import org.apache.jena.query.*;
@@ -15,8 +15,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class JenaTDBLoad {
-    private static Logger logger = LoggerFactory.getLogger(JenaTDBLoad.class);
+public class JenaTDBLoadTest {
+    private static Logger logger = LoggerFactory.getLogger(JenaTDBLoadTest.class);
     // Why This Failure marker
     private static final Marker WTF_MARKER = MarkerFactory.getMarker("WTF");
 
@@ -24,16 +24,15 @@ public class JenaTDBLoad {
         try {
             // Create dataset
             Path path = Paths.get(".").toAbsolutePath().normalize();
-            String dbDir = path.toFile().getAbsolutePath() + "/dbboslit/";
+            String dbDir = path.toFile().getAbsolutePath() + "/dbtest/";
             Location location = Location.create(dbDir);
             Dataset dataset = TDB2Factory.connectDataset(location);
 
             dataset.begin(ReadWrite.WRITE);
             Model model = dataset.getDefaultModel();
 
-            Files.walk(Paths.get("/home/gustavo/nls-fellowship/nls-fellowship-2022-23/rdf/boslit"))
-            //Files.walk(Paths.get(path.toFile().getAbsolutePath() +"/rdf"))
-                    .filter(p -> p.toString().endsWith(".gz"))
+            Files.walk(Paths.get(path.toFile().getAbsolutePath() + "/rdf/"))
+                    .filter(p -> p.toString().endsWith(".rdf"))
                     .forEach(p -> {
                         logger.info(p.toFile().getAbsolutePath());
                         try {

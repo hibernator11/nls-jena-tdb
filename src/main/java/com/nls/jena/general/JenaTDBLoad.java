@@ -1,16 +1,7 @@
-package com.nls.jena.nbs;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+package com.nls.jena.general;
 
 import org.apache.jena.dboe.base.file.Location;
-import org.apache.jena.query.Dataset;
-import org.apache.jena.query.QueryExecution;
-import org.apache.jena.query.QueryExecutionFactory;
-import org.apache.jena.query.QuerySolution;
-import org.apache.jena.query.ReadWrite;
-import org.apache.jena.query.ResultSet;
+import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
@@ -19,6 +10,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class JenaTDBLoad {
     private static Logger logger = LoggerFactory.getLogger(JenaTDBLoad.class);
@@ -29,15 +24,15 @@ public class JenaTDBLoad {
         try {
             // Create dataset
             Path path = Paths.get(".").toAbsolutePath().normalize();
-            String dbDir = path.toFile().getAbsolutePath() + "/db/";
+            String dbDir = path.toFile().getAbsolutePath() + "/dbboslit/";
             Location location = Location.create(dbDir);
             Dataset dataset = TDB2Factory.connectDataset(location);
 
             dataset.begin(ReadWrite.WRITE);
             Model model = dataset.getDefaultModel();
 
-            //Files.walk(Paths.get("/home/gustavo/nls-fellowship/nls-fellowship-2022-23/rdf"))
-            Files.walk(Paths.get(path.toFile().getAbsolutePath() +"/rdf"))
+            Files.walk(Paths.get("/nls-fellowship/nls-fellowship-2022-23/rdf/boslit"))
+            //Files.walk(Paths.get(path.toFile().getAbsolutePath() +"/rdf"))
                     .filter(p -> p.toString().endsWith(".gz"))
                     .forEach(p -> {
                         logger.info(p.toFile().getAbsolutePath());
@@ -48,13 +43,6 @@ public class JenaTDBLoad {
                         }
                     });
             dataset.commit();
-
-            // Create transaction for writing
-            //dataset.begin(ReadWrite.WRITE);
-            //UpdateRequest updateRequest = UpdateFactory.create("INSERT DATA {<http://dbpedia.org/resource/Grace_Hopper> <http://xmlns.com/foaf/0.1/name> \"Grace Hopper\" .}");
-            //UpdateProcessor updateProcessor = UpdateExecutionFactory.create(updateRequest, dataset);
-            //updateProcessor.execute();
-            //dataset.commit();
 
             // create transaction for reading
             dataset.begin(ReadWrite.READ);

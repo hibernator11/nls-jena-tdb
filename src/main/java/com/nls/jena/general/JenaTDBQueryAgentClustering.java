@@ -1,4 +1,4 @@
-package com.nls.jena.nbs;
+package com.nls.jena.general;
 
 import org.apache.jena.dboe.base.file.Location;
 import org.apache.jena.query.*;

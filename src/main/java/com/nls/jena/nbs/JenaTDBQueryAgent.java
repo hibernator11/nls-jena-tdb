@@ -26,7 +26,8 @@ public class JenaTDBQueryAgent {
 
             // create transaction for reading
             dataset.begin(ReadWrite.READ);
-            QueryExecution qe = QueryExecutionFactory.create("SELECT (COUNT(distinct ?s) AS ?total) " +
+            QueryExecution qe = QueryExecutionFactory.create(
+                    "SELECT (COUNT(distinct ?s) AS ?total) " +
                     "WHERE {?s a <http://id.loc.gov/ontologies/bibframe/Agent> " +
                     "filter regex(str(?s), \"#Agent\") " +
                     "}", dataset);
@@ -36,7 +37,8 @@ public class JenaTDBQueryAgent {
                 logger.info("number of Agents = " + strValue);
             }
 
-            qe = QueryExecutionFactory.create("SELECT ?s " +
+            qe = QueryExecutionFactory.create(
+                    "SELECT ?s " +
                     "WHERE {?s a <http://id.loc.gov/ontologies/bibframe/Agent>. " +
                     "filter regex(str(?s), \"#Agent\") " +
                     "} limit 20", dataset);
@@ -65,8 +67,8 @@ public class JenaTDBQueryAgent {
                 logger.info("http://example.org/99116414544204341#Agent100-9 pValue:" + pValue + " oValue:" + oValue);
             }
 
-
-            qe = QueryExecutionFactory.create("SELECT ?s ?p " +
+            qe = QueryExecutionFactory.create(
+                    "SELECT ?s ?p " +
                     "WHERE {?s ?p <http://example.org/99116414544204341#Agent100-9>}", dataset);
             for (ResultSet results = qe.execSelect(); results.hasNext();) {
                 QuerySolution qs = results.next();
@@ -75,7 +77,8 @@ public class JenaTDBQueryAgent {
                 logger.info("sValue:" + sValue + " pValue:" + pValue + " http://example.org/99116414544204341#Agent100-9");
             }
 
-            qe = QueryExecutionFactory.create("PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> " +
+            qe = QueryExecutionFactory.create(
+                    "PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> " +
                     "SELECT *" +
                     "WHERE {?s a <http://id.loc.gov/ontologies/bibframe/Isni> . ?s ?p ?o} limit 10", dataset);
             for (ResultSet results = qe.execSelect(); results.hasNext();) {

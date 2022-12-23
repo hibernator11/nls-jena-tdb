@@ -1,19 +1,15 @@
-package com.nls.jena.nbs;
+package com.nls.jena.general;
 
 import org.apache.jena.dboe.base.file.Location;
+import org.apache.jena.query.*;
 import org.apache.jena.tdb2.TDB2Factory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import org.apache.jena.query.Dataset;
-import org.apache.jena.query.QueryExecution;
-import org.apache.jena.query.QueryExecutionFactory;
-import org.apache.jena.query.QuerySolution;
-import org.apache.jena.query.ReadWrite;
-import org.apache.jena.query.ResultSet;
 
 public class JenaTDBQuery {
     private static Logger logger = LoggerFactory.getLogger(JenaTDBQuery.class);
@@ -43,16 +39,16 @@ public class JenaTDBQuery {
             for (ResultSet results = qe.execSelect(); results.hasNext();) {
                 QuerySolution qs = results.next();
                 String strValue = qs.get("?total").toString();
-                //logger.info("number of classes = " + strValue);
+                logger.info("number of classes = " + strValue);
             }
 
-            qe = QueryExecutionFactory.create("SELECT distinct ?p " +
+            /*qe = QueryExecutionFactory.create("SELECT distinct ?p " +
                     "WHERE {?s ?p ?o }", dataset);
             for (ResultSet results = qe.execSelect(); results.hasNext();) {
                 QuerySolution qs = results.next();
                 String strValue = qs.get("?p").toString();
                 logger.info("value = " + strValue);
-            }
+            }*/
 
             qe = QueryExecutionFactory.create("SELECT (COUNT(distinct ?p) AS ?total) " +
                     "WHERE {?s ?p ?o }", dataset);
@@ -60,6 +56,30 @@ public class JenaTDBQuery {
                 QuerySolution qs = results.next();
                 String strValue = qs.get("?total").toString();
                 logger.info("number of properties = " + strValue);
+            }
+
+            qe = QueryExecutionFactory.create("SELECT (COUNT(*) AS ?total) " +
+                    "WHERE {?s ?p ?o }", dataset);
+            for (ResultSet results = qe.execSelect(); results.hasNext();) {
+                QuerySolution qs = results.next();
+                String strValue = qs.get("?total").toString();
+                logger.info("number of triples = " + strValue);
+            }
+
+            qe = QueryExecutionFactory.create("SELECT (COUNT(distinct ?o) AS ?total) " +
+                    "WHERE {?s ?p ?o . filter regex(str(?o), \"vocabulary\")}", dataset);
+            for (ResultSet results = qe.execSelect(); results.hasNext();) {
+                QuerySolution qs = results.next();
+                String strValue = qs.get("?total").toString();
+                logger.info("number of external links = " + strValue);
+            }
+
+            qe = QueryExecutionFactory.create("SELECT distinct ?o " +
+                    "WHERE {?s ?p ?o . filter regex(str(?o), \"vocabulary\")} limit 10", dataset);
+            for (ResultSet results = qe.execSelect(); results.hasNext();) {
+                QuerySolution qs = results.next();
+                String strValue = qs.get("?o").toString();
+                logger.info("example of external links = " + strValue);
             }
 
             // Releasing dataset resources
