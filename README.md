@@ -111,6 +111,8 @@ Several classes are provided to analyse the content of the dataset grouped into 
 - JenaTDBLoadTest: loading the RDF files into the folder `dbtest` provided in the folder rdf for testing purposes.
 - JenaTDBQueryTest: this class executes general SPARQL queries to retrieve the number of classes and properties included the folder `dbtest`
 - JenaTDBQuery: this class executes general SPARQL queries to retrieve the number of classes and properties
+- JenaTDBQueryAccuracy: this class executes general SPARQL queries to analyse the accuracy data quality dimension.
+- JenaTDBQueryInterlinking: this class executes general SPARQL queries to analyse the interlinking data quality dimension.
 - JenaTDBQueryAgent: this class analyses the resources typed as bf:Agent
 - JenaTDBQueryAgentRoles: this class analyses the roles used for the resources typed as bf:Agent when establishing a relationship with bf:Work resources
 - JenaTDBQueryClustering: this class analyses if the resources typed as bf:Agent are clustered by name
