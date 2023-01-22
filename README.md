@@ -34,7 +34,7 @@ In particular, this project uses the [RDF](https://www.w3.org/RDF/) dataset gene
 
 ## Setup
 
-This project is based on [Apache Maven](https://maven.apache.org), a build-automation tool designed to provide a comprehensive and easy-to-use way of developing Java applications. the use of this code requires the installation of [Apache Maven]([Apache Maven](https://maven.apache.org/install.html)).
+This project is based on [Apache Maven](https://maven.apache.org), a build-automation tool designed to provide a comprehensive and easy-to-use way of developing Java applications. The use of this code requires the installation of ([Apache Maven](https://maven.apache.org/install.html)).
 
 Before running the project, we need to download the libraries and compile the code. We need to run the command:
 
