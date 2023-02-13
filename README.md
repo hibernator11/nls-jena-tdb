@@ -7,8 +7,8 @@ In particular, this project uses the [RDF](https://www.w3.org/RDF/) dataset gene
 ### Table of Contents
 - [Datasets](#datasets)
 - [Setup](#setup)
-- [Loading RDF](#loading-rdf)
 - [Suggested Citations](#suggested-citations)
+- [Loading RDF](#loading-rdf)
 - [Structure of the project](#structure-of-the-project)
 - [Example of code](#example-of-code)
 - [Example of SPARQL queries](#example-of-sparql-queries)
@@ -59,6 +59,12 @@ mvn exec:java -Dexec.mainClass="com.nls.jena.nbs.JenaTDBQueryAgent"
 **Note that this code does not provide the entire RDF dataset due to size constraints. This code is provided as an example of how Jena TDB can be used to load and query an RDF dataset. This example uses the files provided in the `rdf` folder for testing purposes.**
 
 This Java project can be edited in Integrated Development Environments such as [Idea](https://www.jetbrains.com/idea/) and [Eclipse](https://www.eclipse.org/). 
+
+## Suggested Citations
+
+Gustavo Candela. Towards a semantic approach in GLAM Labs: the case of the Data Foundry at the National Library of Scotland. CoRR abs/2301.11182 (2023)
+https://arxiv.org/abs/2301.11182
+
 
 ## Loading RDF
 The class `JenaTDBLoad` is in charge of loading the RDF into the RDF Jena TDB storage system. The RDF files must be places in the folder `rdf`. The following code shows the process:
